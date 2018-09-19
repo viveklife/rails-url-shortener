@@ -1,5 +1,5 @@
 # return true if the string is balanced
-def parenthesis_balance?(str)
+def balance_parenthesis?(str)
   opening_chars = ['(', '{', '[']
   closing_chars = [')', '}', ']']
   stack = []
@@ -27,4 +27,4 @@ end
 
 puts 'Input:'
 str = gets.chomp
-puts parenthesis_balance?(str)
+puts balance_parenthesis?(str)

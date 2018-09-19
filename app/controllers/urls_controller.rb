@@ -26,7 +26,7 @@ class UrlsController < ApplicationController
   # POST /urls.json
   def create
     @url = Url.new(url_params)
-
+    
     respond_to do |format|
       if @url.save
         format.html { redirect_to @url, notice: 'Url was successfully created.' }
@@ -70,6 +70,6 @@ class UrlsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def url_params
-      params.require(:url).permit(:original_url, :short_url)
+      params.require(:url).permit(:original_url)
     end
 end
