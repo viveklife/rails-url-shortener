@@ -1,1 +1,1 @@
-json.partial! "urls/url", url: @url
+json.partial! 'urls/url', url: @url
