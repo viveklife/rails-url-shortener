@@ -1,0 +1,56 @@
+Documentation:
+  Enabled: false
+FrozenStringLiteralComment:
+  Enabled: false
+Layout/AlignParameters:
+  Enabled: false
+Layout/InitialIndentation:
+  Enabled: false
+Layout/TrailingBlankLines:
+  Enabled: false
+Lint/UnneededCopDisableDirective:
+  Enabled: true
+Metrics/LineLength:
+  Enabled: true
+  Max: 125
+  Exclude:
+    - 'spec/**/*_spec.rb'
+Metrics/BlockLength:
+  Enabled: true
+  Max: 50
+  Exclude:
+    - 'spec/**/*_spec.rb'
+Metrics/MethodLength:
+  Max: 20
+Metrics/AbcSize:
+  Max: 18
+Naming/VariableNumber:
+  Enabled: false
+RSpec/DescribeClass:
+  Enabled: false
+RSpec/ExampleLength:
+  Max: 15
+RSpec/ExpectChange:
+  Enabled: false
+RSpec/Focus:
+  Enabled: true
+RSpec/LetSetup:
+  Enabled: false
+RSpec/MultipleExpectations:
+  Enabled: false
+RSpec/NestedGroups:
+  Max: 4
+Style/RegexpLiteral:
+  EnforcedStyle: slashes
+  AllowInnerSlashes: true
+Style/IfUnlessModifier:
+  Enabled: false
+Style/SymbolArray:
+  Enabled: false  
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'bin/**/*'
+    - 'vendor/**/*'
+  TargetRubyVersion: 2.5.1
+  
