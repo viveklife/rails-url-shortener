@@ -1,8 +1,13 @@
 class Url < ApplicationRecord
   POSTGRES_REGEX = '^(https?://)?(www\.)?'
   validates :original_url, presence: true, valid_url: true, on: :create
+  before_validation :format_url
   after_validation :already_exists?
   before_create :assgin_short_url
+
+  def format_url
+    self.original_url = original_url.strip.downcase
+  end
 
   def already_exists?
     if Url.where("REGEXP_REPLACE(original_url, '#{POSTGRES_REGEX}', '') = REGEXP_REPLACE('#{original_url}', '#{POSTGRES_REGEX}', '')").any?
