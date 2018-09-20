@@ -8,8 +8,8 @@ class UrlsController < ApplicationController
     @urls = Url.all
   end
 
-  # GET /urls/1
-  # GET /urls/1.json
+  # GET /urls/:short_url
+  # GET /urls/:short_url.json
   def show; end
 
   def short
@@ -28,7 +28,7 @@ class UrlsController < ApplicationController
     respond_to do |format|
       if @url.save
         format.html { redirect_to url_path(@url.short_url), notice: 'Url was successfully created.' }
-        format.json { render :show, status: :created, location: @url }
+        format.json { render :show, status: :created, location: url_path(@url.short_url) }
       else
         format.html { render :new }
         format.json { render json: @url.errors, status: :unprocessable_entity }
@@ -36,8 +36,8 @@ class UrlsController < ApplicationController
     end
   end
 
-  # DELETE /urls/1
-  # DELETE /urls/1.json
+  # DELETE /urls/:short_url
+  # DELETE /urls/:short_url.json
   def destroy
     @url.destroy
     respond_to do |format|
@@ -49,7 +49,11 @@ class UrlsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_url
-      @url = Url.find_by_short_url(params[:short_url] || params[:id])
+      begin
+        @url = Url.find_by_short_url!(params[:short_url] || params[:id])
+      rescue ActiveRecord::RecordNotFound
+        handle_error
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -61,5 +65,12 @@ class UrlsController < ApplicationController
       new_url = @url.original_url.downcase.gsub(/(https?:\/\/)|(www\.)/, '')
       new_url.slice!(-1) if new_url[-1] == '/'
       "http://#{new_url}"
+    end
+
+    def handle_error
+      respond_to do |format|
+        format.html { redirect_to urls_url, notice: "Url doesn't exist" }
+        format.json { render json: { error: "Url doesn't exist", status: 404 } }
+      end
     end
 end
