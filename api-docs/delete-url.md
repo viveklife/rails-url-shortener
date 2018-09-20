@@ -1,3 +1,4 @@
+**Delete Short Url**
 ----
   Returns json data about a created url.
 
