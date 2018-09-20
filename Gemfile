@@ -37,14 +37,14 @@ gem 'jquery-rails'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'bootstrap', '~> 4.1', '>= 4.1.3'
-gem 'kaminari', '~> 1.1', '>= 1.1.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'dotenv-rails'
-  gem 'factory_bot', '~> 4.11', '>= 4.11.1'
+  gem 'factory_bot_rails'
   gem 'faker'
+  gem 'rails-controller-testing'
   gem 'rspec-rails'
 end
 

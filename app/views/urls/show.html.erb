@@ -6,8 +6,8 @@
 </p>
 
 <p>
-  <strong>Short url:</strong>
-  <%= @url.short_url %>
+  <strong>Short url: </strong>
+  <%= link_to shortened_full_url(@url), short_path(@url.short_url)  %>
 </p>
 
 <br>

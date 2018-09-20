@@ -6,7 +6,7 @@ class Url < ApplicationRecord
   before_create :assgin_short_url
 
   def format_url
-    self.original_url = original_url.strip.downcase
+    self.original_url = original_url&.strip&.downcase
   end
 
   def already_exists?
@@ -21,6 +21,6 @@ class Url < ApplicationRecord
   end
 
   def generate_short_url
-    SecureRandom.alphanumeric.downcase
+    SecureRandom.base58(10).downcase
   end
 end

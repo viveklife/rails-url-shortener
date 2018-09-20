@@ -11,7 +11,6 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Original url</th>
       <th>Short url</th>
       <th colspan="2"></th>
     </tr>
@@ -20,10 +19,9 @@
   <tbody>
     <% @urls.each do |url| %>
       <tr>
-        <td><%= url.original_url %></td>
-        <td><%= link_to url.short_url %></td>
-        <td><%= link_to 'Show', url %></td>
-        <td><%= link_to 'Destroy', url, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to shortened_full_url(url), short_path(url.short_url) %></td>
+        <td><%= link_to 'Show', url_path(url.short_url) %></td>
+        <td><%= link_to 'Destroy', url_path(url.short_url), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
